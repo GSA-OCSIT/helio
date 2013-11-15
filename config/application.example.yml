@@ -10,9 +10,13 @@
 #
 GMAIL_USERNAME: Your_Username
 GMAIL_PASSWORD: Your_Password
+
 ADMIN_NAME: First User
 ADMIN_EMAIL: user@example.com
 ADMIN_PASSWORD: changeme
-OMNIAUTH_PROVIDER_KEY: Your_OmniAuth_Provider_Key
-OMNIAUTH_PROVIDER_SECRET: Your_OmniAuth_Provider_Secret
+
+MYUSA_OAUTH_PROVIDER_KEY: oauth_key (client ID)
+MYUSA_OAUTH_PROVIDER_SECRET: oauth_secret
+MYUSA_HOME: https://my.usa.gov
+
 ROLES: [admin, user, VIP]
