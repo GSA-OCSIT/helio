@@ -36,6 +36,7 @@ ActiveAdmin.register User do
         user.roles.map{|r| r.name.capitalize()}.join(', ').html_safe
       end
     end
+    active_admin_comments
   end
 
 
