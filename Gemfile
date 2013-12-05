@@ -16,9 +16,14 @@ gem 'rolify'
 gem 'simple_form'
 gem 'slim'
 gem 'thin'
+gem 'redis-rails'
+gem 'redis-namespace'
 gem 'resque', '~> 2.0.0.pre.1', github: 'resque/resque'
 gem 'activeadmin', github: 'gregbell/active_admin'
-gem 'will_paginate', '~> 3.0'
+gem 'active-resource-pagination'
+gem 'activeresource', require: 'active_resource'
+gem 'httparty'
+
 
 group :development do
   gem 'better_errors'

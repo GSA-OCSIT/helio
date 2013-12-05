@@ -1,16 +1,14 @@
 class User < ActiveRecord::Base
-  # # Include default devise modules. Others available are:
-  # # :confirmable, :lockable, :timeoutable and :omniauthable
-  # devise :database_authenticatable, 
-  #        :recoverable, :rememberable, :trackable, :validatable
-  # # Include default devise modules. Others available are:
-  # # :confirmable, :lockable, :timeoutable and :omniauthable
-  # devise :database_authenticatable, 
-  #        :recoverable, :rememberable, :trackable, :validatable
+
   rolify
 
   after_create :add_roles
 
+  validates_presence_of :name
+  validates_uniqueness_of :email
+  validates_uniqueness_of :uid
+
+  after_create :add_roles
 
   def has_gov_email?
     return %w{ .gov .mil .fed.us }.any? {|x| self.email.end_with?(x)}
@@ -18,8 +16,22 @@ class User < ActiveRecord::Base
 
   def add_roles
     self.add_role :admin if User.count == 1 # make the first user an admin
+    self.add_role :agency_admin if self.has_gov_email?
+  end
 
-    self.add_role :agency if self.has_gov_email?
+  def log_sign_in(ip)
+    self.sign_in_count = self.sign_in_count+1
+    self.last_sign_in_at = Time.zone.now
+    self.current_sign_in_at = Time.zone.now
+    self.current_sign_in_ip = ip
+    self.last_sign_in_ip = ip
+    self.save
+  end
+
+  def log_sign_out(ip)
+    self.current_sign_in_ip = nil
+    self.current_sign_in_at = nil
+    self.save
   end
 
   def self.create_with_omniauth(auth)
@@ -34,28 +46,3 @@ class User < ActiveRecord::Base
   end
 end
 
-
-
-class User < ActiveRecord::Base
-  has_one :profile
-
-  rolify
-
-  validates_presence_of :name
-  validates_uniqueness_of :email
-  validates_uniqueness_of :uid
-
-  after_create :add_roles
-
-  def self.create_with_omniauth(auth)
-    create! do |user|
-      user.provider = auth['provider']
-      user.uid = auth['uid']
-      if auth['info']
-         user.email = auth['info']['email'] || ""
-         user.name = auth['info']['name'] || user.email
-      end
-    end
-  end
-
-end

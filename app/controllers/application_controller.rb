@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?
+  helper_method :current_user_is
 
   private
     def current_user
@@ -21,6 +22,10 @@ class ApplicationController < ActionController::Base
 
     def user_signed_in?
       return true if current_user
+    end
+
+    def current_user_is(role)
+      return true if current_user && current_user.has_role?(role)
     end
 
     def correct_user?
