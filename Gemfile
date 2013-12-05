@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.2'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -16,6 +16,10 @@ gem 'rolify'
 gem 'simple_form'
 gem 'slim'
 gem 'thin'
+gem 'resque', '~> 2.0.0.pre.1', github: 'resque/resque'
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'will_paginate', '~> 3.0'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
@@ -30,6 +34,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'sqlite3'
+  gem 'pry'
+  gem 'pry-nav'
 end
 group :test do
   gem 'capybara'

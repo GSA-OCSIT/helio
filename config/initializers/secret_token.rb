@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-MyusaDemo::Application.config.secret_key_base = 'cf3dc9f69eb3319cbb0926ba65a6a6070e0cc50d1d35a2c209ad28b7d1104229772ca2b124645e7bc9990e2dfdb11fe6c588345538830afbe4204c143e5154c0'
+Helio::Application.config.secret_key_base = 'cf3dc9f69eb3319cbb0926ba65a6a6070e0cc50d1d35a2c209ad28b7d1104229772ca2b124645e7bc9990e2dfdb11fe6c588345538830afbe4204c143e5154c0'

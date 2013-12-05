@@ -1,4 +1,4 @@
-MyusaDemo::Application.configure do
+Helio::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -39,4 +39,5 @@ MyusaDemo::Application.configure do
   # Send email in development mode.
   config.action_mailer.perform_deliveries = true
 
+  config.action_mailer.default_url_options = { :host => 'localhost:4004' }
 end

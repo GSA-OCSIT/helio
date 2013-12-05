@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-MyusaDemo::Application.load_tasks
+Helio::Application.load_tasks
