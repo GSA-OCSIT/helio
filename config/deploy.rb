@@ -1,11 +1,13 @@
 set :application, 'helio'
-set :repo_url, 'https://github.com/GSA-OCSIT/helio.git'
+set :domain,      "github.com"
+# set :repo_url, 'https://github.com//helio.git'
+set :repository,  "ssh://#{domain}/GSA-OCSIT/#{application}.git"
 
 set :default_stage, 'qa'
 
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
-set :deploy_to, '/var/www/helio'
+set :deploy_to, "/var/www/#{application}"
 set :current_path, "#{deploy_to}/current"
 set :shared_path, "#{deploy_to}/shared"
 
@@ -24,11 +26,8 @@ set :keep_releases, 5
 namespace :deploy do
 
   desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      execute :touch, current_path.join('tmp/restart.txt')
-    end
+  task :restart, :roles => :app do
+    run "touch #{current_release}/tmp/restart.txt"
   end
 
   after :restart, :clear_cache do
