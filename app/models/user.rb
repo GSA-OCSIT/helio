@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
 
   after_create :add_roles
 
-  validates_presence_of :name
   validates_uniqueness_of :email
   validates_uniqueness_of :uid
 
@@ -17,6 +16,7 @@ class User < ActiveRecord::Base
   def add_roles
     self.add_role :admin if User.count == 1 # make the first user an admin
     self.add_role :agency_admin if self.has_gov_email?
+    self.add_role :user
   end
 
   def log_sign_in(ip)

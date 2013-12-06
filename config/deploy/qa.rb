@@ -15,7 +15,12 @@ set :stage, :qa
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server 'helio.gsa.io', user: 'ubuntu', roles: %w{web app db}, 
+server 'helio.gsa.io', user: 'ubuntu', roles: %w{web app db}
+
+set :rvm_type, :user
+set :rvm_ruby_version, '2.0.0'
+set :rvm_user, 'ubuntu'
+# set :rvm_custom_path, '~/.myveryownrvm'
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options

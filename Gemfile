@@ -35,6 +35,9 @@ group :development do
   gem 'quiet_assets'
   gem 'rails_layout'
   gem 'capistrano', '~> 3.0.1'
+  gem 'capistrano-rvm', '~> 0.1.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails', '~> 1.1.0'
 end
 group :development, :test do
   gem 'factory_girl_rails'

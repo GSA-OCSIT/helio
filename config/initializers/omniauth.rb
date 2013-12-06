@@ -8,7 +8,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 	  			:verify => false # DISABLED SSL VERIFY IN ORDER TO PLAY WITH myusa.shelrick.com
 	  		}
 	  	},
-	  :scope => "profile tasks notifications"
+	  :scope => "profile notifications"
 end
 
 OmniAuth.config.on_failure = SessionsController.action(:failure)
