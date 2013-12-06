@@ -34,6 +34,7 @@ group :development do
   gem 'hub', :require=>nil
   gem 'quiet_assets'
   gem 'rails_layout'
+  gem 'capistrano', '~> 3.0.1'
 end
 group :development, :test do
   gem 'factory_girl_rails'
