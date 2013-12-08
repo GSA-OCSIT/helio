@@ -23,7 +23,7 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'active-resource-pagination'
 gem 'activeresource', require: 'active_resource'
 gem 'httparty'
-
+gem 'gman', :git => 'https://github.com/GSA-OCSIT/gman.git'
 
 group :development do
   gem 'better_errors'
