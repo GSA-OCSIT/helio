@@ -1,4 +1,5 @@
 ActiveAdmin.register User do
+  scope_to :current_agency, :unless => proc{ current_user.has_role? :admin }
   permit_params :email
 
   index do
@@ -15,7 +16,7 @@ ActiveAdmin.register User do
     f.inputs "Admin Details" do
       f.input :name
       f.input :email
-      f.input :agency, as: :select, collection: AGENCIES
+      f.input :agency, as: :select
     end
     f.inputs "Roles" do
       f.input :roles, :as => :check_boxes
@@ -30,6 +31,9 @@ ActiveAdmin.register User do
       row :uid
       row :email
       row :agency
+      row :zip
+      row :gender
+      row :is_parent
       row :created_at
       row :updated_at
       row :roles do |user|
@@ -42,7 +46,7 @@ ActiveAdmin.register User do
 
   controller do
     def permitted_params
-      params.permit(:user => [:id, :name, :email, :agency, :roles])
+      params.permit(:user => [:id, :name, :email, :agency_id, :roles])
     end
 
     def scoped_collection

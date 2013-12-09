@@ -6,8 +6,10 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :email
   validates_uniqueness_of :uid
-
+  belongs_to :agency
   after_create :add_roles
+  has_many :subscriptions
+
 
   def has_gov_email?
     return %w{ .gov .mil .fed.us }.any? {|x| self.email.end_with?(x)}
@@ -15,7 +17,7 @@ class User < ActiveRecord::Base
 
   def add_roles
     self.add_role :admin if User.count == 1 # make the first user an admin
-    self.add_role :agency_admin if self.has_gov_email?
+    self.add_role :agency_admin if has_gov_email?
     self.add_role :user
   end
 
@@ -39,8 +41,13 @@ class User < ActiveRecord::Base
       user.provider = auth['provider']
       user.uid = auth['uid']
       if auth['info']
-         user.name = auth['info']['name'] || ""
-         user.email = auth['info']['email'] || ""
+        user.name = auth['info']['name'] || auth['info']['email']
+        user.email = auth['info']['email'] || ""
+      end
+      if auth['extra']
+        user.gender = auth['extra']['raw_info']['gender'] || ""
+        user.zip = auth['extra']['raw_info']['zip'] || ""
+        user.is_parent = auth['extra']['raw_info']['is_parent'] || ""
       end
     end
   end

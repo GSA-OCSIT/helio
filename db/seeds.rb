@@ -12,3 +12,12 @@ YAML.load(ENV['ROLES']).each do |role|
   Role.find_or_create_by_name(role)
   puts 'role: ' << role
 end
+
+
+# fetches list of agencies from usa.gov API 
+puts 'AGENCIES'
+agency_url = 'http://www.usa.gov/api/USAGovAPI/contacts.json/contacts?result_filter=Id|Name|parent|synonym|language&sort=name&query_filter=language::en'
+puts "fetching agency list from: #{agency_url}"
+agency_tree = HTTParty.get(URI.encode(agency_url), headers: {'Content-Type' => 'application/json'})
+agency_names = agency_tree['Contact'].map{|c| c['Name']}.sort()
+agency_names.each { |agency| Agency.find_or_create_by_name(:name => agency); puts 'agency: ' << agency }

@@ -3,6 +3,6 @@ li
 	  = link_to 'Sign out', signout_path
 	- else
 	  = link_to 'Sign in', signin_path
-- if current_user_is(:admin)
+- if current_user_is(:admin) or current_user_is(:agency_admin)
 	li
 		= link_to 'Admin', admin_root_path
