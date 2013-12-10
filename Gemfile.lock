@@ -27,6 +27,15 @@ GIT
       thor (~> 0.17)
 
 GIT
+  remote: git://github.com/sshingler/capistrano-resque.git
+  revision: 2c73a2a1fed67cb88591141469a500969f7d91ca
+  specs:
+    capistrano-resque (0.1.0)
+      capistrano
+      resque
+      resque-scheduler
+
+GIT
   remote: https://github.com/GSA-OCSIT/gman.git
   revision: 680b5ca43e6197f017ceafb5d66a11040f46de70
   specs:
@@ -103,10 +112,6 @@ GEM
     capistrano-rails (1.1.0)
       capistrano (>= 3.0.0)
       capistrano-bundler (>= 1.0.0)
-    capistrano-resque (0.1.0)
-      capistrano
-      resque
-      resque-scheduler
     capistrano-rvm (0.1.0)
       capistrano (~> 3.0)
       sshkit (~> 1.2.0)
@@ -386,7 +391,7 @@ DEPENDENCIES
   capistrano (~> 3.0.1)
   capistrano-bundler
   capistrano-rails (~> 1.1.0)
-  capistrano-resque (~> 0.1.0)
+  capistrano-resque!
   capistrano-rvm (~> 0.1.0)
   capybara
   coffee-rails (~> 4.0.0)

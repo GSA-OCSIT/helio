@@ -21,7 +21,6 @@ class SendAlertJob
 	    	'Content-Type' => 'application/json',
 	    	'Authorization' => "Bearer #{@user.token}"
 	    })
-	  binding.pry
 	  puts @response
 	end
 end
