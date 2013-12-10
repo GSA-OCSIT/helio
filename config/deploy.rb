@@ -16,6 +16,8 @@ set :log_level, :debug
 set :pty, true
 set :ssh_options, { :forward_agent => true }
 
+set :branch, :alerts_phase_one
+
 set :linked_files, %w{config/database.yml config/application.yml config/redis/production.conf}
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -43,5 +45,6 @@ namespace :deploy do
   end
 
   after :finishing, 'deploy:cleanup'
-
 end
+
+after "deploy", "deploy:migrate"
