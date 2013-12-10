@@ -16,6 +16,7 @@ set :log_level, :debug
 set :pty, true
 set :ssh_options, { :forward_agent => true }
 
+# deploy a branch...
 set :branch, :resque_deployment
 
 set :linked_files, %w{config/database.yml config/application.yml config/redis/production.conf}
