@@ -1,6 +1,6 @@
 require "redis"
 
-if Rails.env == 'production'
+if Rails.env == 'production' or Rails.env == 'qa' or Rails.env == 'staging'
 	$redis = Redis::Namespace.new("helio", :redis => Redis.new(:path => ENV['REDIS_SOCK']))
 else
 	redis_conf = File.read(Rails.root.join("config/redis", "#{Rails.env}.conf"))

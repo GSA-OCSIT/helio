@@ -1,4 +1,5 @@
 set :stage, :qa
+set :rails_env, :qa
 
 # Simple Role Syntax
 # ==================
