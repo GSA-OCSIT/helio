@@ -1,9 +1,19 @@
 ActiveAdmin.register Alert do
   scope_to :current_agency, :unless => proc{ current_user.has_role? :admin }
 
-  permit_params :body
+  permit_params :body, :alert_type_id
 
   preserve_default_filters!
+
+  index do
+    column :id
+    column :body
+    column :delivered?
+    column :created_at
+    column :agency if current_user.has_role? :admin
+
+    default_actions
+  end
 
   form do |f|
     f.inputs "Alert" do
@@ -18,7 +28,9 @@ ActiveAdmin.register Alert do
     h3 "Alert Information"
     attributes_table do
       row :body
-      # row :agency
+      row :alert_type
     end
   end
+
+
 end
