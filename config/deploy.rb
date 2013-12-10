@@ -19,6 +19,8 @@ set :ssh_options, { :forward_agent => true }
 # deploy a branch...
 set :branch, :resque_deployment
 
+set :resque_environment_task, true
+
 set :linked_files, %w{config/database.yml config/application.yml config/redis/production.conf}
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
