@@ -17,7 +17,7 @@ set :pty, true
 set :ssh_options, { :forward_agent => true }
 
 # deploy a branch...
-set :branch, :resque_deployment
+# set :branch, :resque_deployment
 
 set :resque_environment_task, true
 
