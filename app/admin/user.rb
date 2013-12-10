@@ -37,7 +37,7 @@ ActiveAdmin.register User do
       row :created_at
       row :updated_at
       row :roles do |user|
-        user.roles.map{|r| r.name.capitalize()}.join(', ').html_safe
+        user.roles.map{|r| r.name.titleize()}.join(', ').html_safe
       end
     end
     active_admin_comments

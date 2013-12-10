@@ -38,6 +38,7 @@ group :development do
   gem 'capistrano-rvm', '~> 0.1.0'
   gem 'capistrano-bundler'
   gem 'capistrano-rails', '~> 1.1.0'
+  gem "capistrano-resque", "~> 0.1.0", require: false
 end
 group :development, :test do
   gem 'factory_girl_rails'
