@@ -47,4 +47,4 @@ namespace :deploy do
   after :finishing, 'deploy:cleanup'
 end
 
-after "deploy", "deploy:migrate"
+after "deploy:update_code", "deploy:migrate"
