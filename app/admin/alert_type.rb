@@ -4,6 +4,14 @@ ActiveAdmin.register AlertType do
   
   filter :name
 
+  index do
+    column :id
+    column :name
+    column :slug
+    column :created_at
+    column :agency if current_user.has_role? :admin
+  end
+
   form do |f|
     f.inputs "Alert Type" do
       f.input :name
