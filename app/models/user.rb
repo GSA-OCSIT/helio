@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :email
   validates_uniqueness_of :uid
+  # validates_presence_of :agency, :if => :has_gov_email?
   belongs_to :agency
   after_create :add_roles
   has_many :subscriptions
@@ -21,10 +22,11 @@ class User < ActiveRecord::Base
     add_role :user
   end
 
-  def log_sign_in(ip)
+  def log_sign_in(ip,auth)
     self.sign_in_count = self.sign_in_count+1
     self.last_sign_in_at, self.current_sign_in_at = Time.zone.now, Time.zone.now
     self.current_sign_in_ip, self.last_sign_in_ip = ip, ip
+    self.token = auth['credentials']['token']
     save
   end
 

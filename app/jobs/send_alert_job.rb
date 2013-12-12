@@ -21,6 +21,5 @@ class SendAlertJob
 	    	'Content-Type' => 'application/json',
 	    	'Authorization' => "Bearer #{@user.token}"
 	    })
-	  logger.info @result
 	end
 end
