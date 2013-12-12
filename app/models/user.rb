@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :email
   validates_uniqueness_of :uid
+  # validates_presence_of :agency, :if => :has_gov_email?
   belongs_to :agency
   after_create :add_roles
   has_many :subscriptions
