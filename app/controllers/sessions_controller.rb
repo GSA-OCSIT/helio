@@ -16,8 +16,8 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
     user.log_sign_in(request.ip,auth)
     user.add_role :admin if User.count == 1 # make the first user an admin
-    if user.email.blank?
-      redirect_to edit_user_path(user), :alert => "Please enter your email address."
+    if user.email.blank? or (user.agency.blank? and user.has_gov_email?)
+      redirect_to edit_admin_user_path(user), :alert => "Please complete the fields below."
     else
       redirect_to root_url, :notice => 'Signed in!'
     end
