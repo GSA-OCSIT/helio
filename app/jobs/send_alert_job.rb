@@ -11,7 +11,8 @@ class SendAlertJob
   	@payload = { 
   		:notification => {
   			:subject => @alert.subject,
-  			:body => @alert.body
+  			:body => @alert.body,
+  			:notification_type_id => @alert.alert_type.slug
   		}
   	}.to_json
 
