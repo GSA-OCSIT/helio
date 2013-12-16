@@ -1,14 +1,18 @@
 ActiveAdmin.register Alert do
   scope_to :current_agency, :unless => proc{ current_user.has_role? :admin }
 
-  permit_params :body, :alert_type_id, :subject
+  permit_params :body, :alert_type_id, :subject, :zip, :is_parent, :gender
 
   preserve_default_filters!
 
   index do
     column :id
+    column "Type" do |alert|
+      alert.alert_type.name
+    end
     column :subject
     column :delivered?
+    column :zip
     column :created_at
     column :agency if current_user.has_role? :admin
 
@@ -20,6 +24,12 @@ ActiveAdmin.register Alert do
       f.input :alert_type, :collection => current_user.agency.alert_types, :required => true
       f.input :subject, :required => true
       f.input :body, :required => true
+    end
+
+    f.inputs "Targeting" do
+      f.input :zip
+      f.input :gender, :as => :select, :collection => ['male','female']
+      f.input :is_parent, :label => "Parents"
     end
 
     f.actions
@@ -34,9 +44,10 @@ ActiveAdmin.register Alert do
       row :sent_at
       row :subscribers do
         ul do
-          alert.alert_type.subscriptions.each do |sub|
-            li link_to(sub.user.name, admin_user_path(sub.user))
+          alert.subscribers.each do |sub|
+            li link_to(sub.name, admin_user_path(sub))
           end
+          li "None" if alert.subscribers.empty?
         end
       end
     end

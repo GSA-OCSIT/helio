@@ -3,8 +3,8 @@ class QueueAlertsJob
 
 	def self.perform(alert_id)
   	@alert = Alert.find(alert_id)
-  	@alert.alert_type.subscriptions.each do |subscription|
-	  	Resque.enqueue(SendAlertJob, alert_id, subscription.user.id)
+  	@alert.subscribers.each do |user|
+	  	Resque.enqueue(SendAlertJob, alert_id, user.id)
 	  end
 	  @alert.sent_at = Time.now
 	  @alert.save

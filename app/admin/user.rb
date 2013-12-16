@@ -16,11 +16,10 @@ ActiveAdmin.register User do
     f.inputs "User Details" do
       f.input :name
       f.input :email
-      f.input :agency, as: :select, :required => true if user.has_role? :agency_admin
-    end
-    f.inputs "Roles" do
-      f.input :roles, :as => :check_boxes
-    end
+      f.input :agency, as: :select, :required => true if user.has_role? :agency_admin end
+      f.inputs "Roles" do
+        f.input :roles, :as => :check_boxes
+      end
     f.actions
   end
 

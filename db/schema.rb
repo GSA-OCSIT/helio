@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131216030248) do
+ActiveRecord::Schema.define(version: 20131216133955) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -70,6 +70,9 @@ ActiveRecord::Schema.define(version: 20131216030248) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "subject"
+    t.integer  "zip"
+    t.string   "gender"
+    t.boolean  "is_parent"
   end
 
   add_index "alerts", ["alert_type_id"], name: "index_alerts_on_alert_type_id"
@@ -115,9 +118,9 @@ ActiveRecord::Schema.define(version: 20131216030248) do
     t.integer  "agency_id"
     t.integer  "zip"
     t.integer  "zip_four"
-    t.text     "gender"
+    t.string   "gender"
     t.boolean  "is_parent"
-    t.text     "token"
+    t.string   "token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

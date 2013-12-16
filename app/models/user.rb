@@ -27,7 +27,19 @@ class User < ActiveRecord::Base
     self.last_sign_in_at, self.current_sign_in_at = Time.now, Time.now
     self.current_sign_in_ip, self.last_sign_in_ip = ip, ip
     self.token = auth['credentials']['token']
-    save
+    if auth['info']
+      self.name = auth['info']['name'] if auth['info']['name']
+      self.email = auth['info']['email'] if auth['info']['email']
+    end
+    if auth['extra']
+      self.gender = auth['extra']['raw_info']['gender'] if auth['extra']['raw_info']['gender']
+      self.zip = auth['extra']['raw_info']['zip'] if auth['extra']['raw_info']['zip']
+      self.is_parent = auth['extra']['raw_info']['is_parent'] if auth['extra']['raw_info']['is_parent']
+    end
+    if self.agency.nil? and agency = Agency.find_by_email_suffix(self.email.split("@").last)
+      self.agency = agency
+    end
+    self.save
   end
 
   def log_sign_out(ip)
