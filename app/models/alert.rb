@@ -10,4 +10,8 @@ class Alert < ActiveRecord::Base
   def queue_alerts
   	Resque.enqueue(QueueAlertsJob, self.id)
   end
+
+  def self.recent(num=5)
+  	Alert.order(:created_at).limit(num)
+  end
 end

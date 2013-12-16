@@ -31,6 +31,14 @@ ActiveAdmin.register Alert do
       row :subject
       row :body
       row :alert_type
+      row :sent_at
+      row :subscribers do
+        ul do
+          alert.alert_type.subscriptions.each do |sub|
+            li link_to(sub.user.name, admin_user_path(sub.user))
+          end
+        end
+      end
     end
   end
 

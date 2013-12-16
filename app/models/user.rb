@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
   def log_sign_in(ip,auth)
     self.sign_in_count = self.sign_in_count+1
-    self.last_sign_in_at, self.current_sign_in_at = Time.zone.now, Time.zone.now
+    self.last_sign_in_at, self.current_sign_in_at = Time.now, Time.now
     self.current_sign_in_ip, self.last_sign_in_ip = ip, ip
     self.token = auth['credentials']['token']
     save

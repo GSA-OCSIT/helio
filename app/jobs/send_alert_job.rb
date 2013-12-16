@@ -12,7 +12,7 @@ class SendAlertJob
   		:notification => {
   			:subject => @alert.subject,
   			:body => @alert.body,
-  			:notification_type_id => @alert.alert_type.slug
+  			:notification_type => @alert.alert_type.slug
   		}
   	}.to_json
 
