@@ -1,6 +1,6 @@
 ActiveAdmin.register AlertType do
   scope_to :current_agency, :unless => proc{ current_user.has_role? :admin }
-  permit_params :name, :agency_id
+  permit_params :name, :agency_id, :description
   
   filter :name
 
@@ -10,11 +10,14 @@ ActiveAdmin.register AlertType do
     column :slug
     column :created_at
     column :agency if current_user.has_role? :admin
+
+    default_actions
   end
 
   form do |f|
     f.inputs "Alert Type" do
       f.input :name
+      f.input :description
       if current_user.has_role? :admin
         f.input :agency, :required => true, :default => current_user.agency.id
       else
@@ -31,6 +34,7 @@ ActiveAdmin.register AlertType do
       row :name
       row :slug
       row :agency
+      row :description
     end
   end
   # See permitted parameters documentation:

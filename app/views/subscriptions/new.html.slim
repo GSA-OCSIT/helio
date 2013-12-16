@@ -1,0 +1,12 @@
+h1
+	| New subscription
+
+- if @alert_types.any?
+	= render :partial => 'form'
+
+- else
+	p
+		= link_to("My Subscriptions", subscriptions_path)
+	p
+		| Sorry, there are no more alert types for you to subscribe to!
+

@@ -1,0 +1,6 @@
+= simple_form_for(@subscription) do |f|
+
+	= f.select :alert_type_id, @alert_types.map {|at| [at.name,at.id]}
+	br
+	br
+	= f.submit "Create Subscription"

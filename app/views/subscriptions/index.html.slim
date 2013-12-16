@@ -1,0 +1,14 @@
+h1
+	| My Subscriptions
+
+p
+	= link_to("Add new", new_subscription_path)
+	|&nbsp;|&nbsp;
+	= link_to("Manage my alert settings in MyUSA", "#{ENV["MYUSA_HOME"]}/settings")
+ul
+	- if @subscriptions.any?
+		- @subscriptions.each do |sub|
+			li= sub.alert_type.name + " - " + sub.alert_type.description
+	- else
+		li
+			| You currently have no subscriptions. #{link_to("Add a new subscription", new_subscription_path)} to get started.
