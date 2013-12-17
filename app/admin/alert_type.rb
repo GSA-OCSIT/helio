@@ -16,8 +16,8 @@ ActiveAdmin.register AlertType do
 
   form do |f|
     f.inputs "Alert Type" do
-      f.input :name
-      f.input :description
+      f.input :name, :required => true
+      f.input :description, :required => true
       if current_user.has_role? :admin
         f.input :agency, :required => true, :default => current_user.agency.id
       else
