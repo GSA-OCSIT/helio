@@ -1,5 +1,16 @@
-h1 Welcome
+div align="center"
+  h2 Because PIFs have nice brains
 
-h2= "#{@sent_alerts} users notified counting..."
+  #cf
+    img width="800" height="581" class="bottom" src="assets/Zombusa2.jpg" /
+    img width="800" height="581" class="top" src="assets/Zombusa1.jpg" /
 
-h2= "#{@subscriptions.size} alerts ready and waiting to be sent..."
+
+  - if user_signed_in?
+    = link_to 'Sign out', signout_path
+  - else
+    h4
+      'Save your brains with Zombie Alerts
+    br
+    = link_to 'Sign in with MyUSA', signin_path, class: "btn btn-warning btn-xlarge"
+
