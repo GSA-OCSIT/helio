@@ -12,7 +12,8 @@ class SendAlertJob
   		:notification => {
   			:subject => @alert.subject,
   			:body => @alert.body,
-  			:notification_type => @alert.alert_type.slug
+  			:notification_type => @alert.alert_type.slug,
+  			:default_delivery => 'sms'
   		}
   	}.to_json
 
@@ -21,7 +22,7 @@ class SendAlertJob
 	    :headers => {
 	    	'Content-Type' => 'application/json',
 	    	'Authorization' => "Bearer #{user.token}"
-	    })
+	    },  :verify => false)
 
 	  if Rails.env == "development"
 	  	Resque.logger.info "----- SendAlertJob"
