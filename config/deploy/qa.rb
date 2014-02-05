@@ -16,12 +16,12 @@ set :rails_env, :qa
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server 'ec2-54-204-114-89.compute-1.amazonaws.com', user: 'ubuntu', roles: %w{web app db}
+server 'ec2-54-196-93-192.compute-1.amazonaws.com', user: 'ubuntu', roles: %w{web app db}
 
-role :resque_worker, "ec2-54-204-114-89.compute-1.amazonaws.com"
+role :resque_worker, "ec2-54-196-93-192.compute-1.amazonaws.com"
 # role :resque_scheduler, "app_domain"
 
-set :workers, { "alerts" => 1, "queue_alerts" => 1 }
+set :workers, { "*" => 1 }
 
 set :rvm_type, :user
 set :rvm_ruby_version, '2.0.0'

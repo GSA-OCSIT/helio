@@ -1,5 +1,5 @@
 class Alert < ActiveRecord::Base
-  belongs_to :alert_type
+  belongs_to :alert_type, :dependent => :destroy
   has_one :agency, :through => :alert_type
   after_create :queue_alerts
 
